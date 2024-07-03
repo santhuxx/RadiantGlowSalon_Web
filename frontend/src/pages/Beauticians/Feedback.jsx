@@ -36,7 +36,7 @@ const Feedback = () => {
                         </div>
                     </div>
                     <div className='flex gap-1'>
-                        {[...Array(5).keys()].map((_, index) => <AiFillStar key={index} color='#0067ff' />)}
+                        {[...Array(5).keys()].map((_, index) => <AiFillStar key={index} color='#fcc703' />)}
                     </div>
                 </div>
             </div>

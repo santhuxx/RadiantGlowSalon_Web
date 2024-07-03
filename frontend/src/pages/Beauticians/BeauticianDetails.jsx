@@ -3,6 +3,7 @@ import beauticianImg from '../../assets/images/beautician-img01.png';
 import star from '../../assets/images/star.png';
 import BeauticianAbout from './BeauticianAbout';
 import Feedback from './Feedback';
+import SidePanel from './SidePanel';
 
 const BeauticianDetails = () => {
   const [tab, setTab] = useState('about');
@@ -60,6 +61,9 @@ const BeauticianDetails = () => {
             </div>
 
 
+          </div>
+          <div>
+            <SidePanel/>
           </div>
         </div>
       </div>
