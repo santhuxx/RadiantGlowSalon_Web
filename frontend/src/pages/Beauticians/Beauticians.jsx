@@ -10,7 +10,7 @@ const Beauticians = () => {
           <div className='max-w-[580px] mt-[30px] mx-auto bg-[#0866ff2c] rounded-md flex items-center justify-between'>
             <input
               type='search'
-              className='py-4 pl-4 pr-2 bg-transparent w-full focus:outline-none cursor-pointer placeholder:text-textColor'
+              className='py-4 pl-4 pr-2 bg-transparent w-full focus:outline-none cursor-text placeholder:text-textColor'
               placeholder='Search Beautician'
             />
             <button className='btn mt-0 rounded-[0px] rounded-r-md'>
