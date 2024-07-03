@@ -33,4 +33,14 @@ export const beauticians = [
     totalClients: 1600,
     salon: "Radiant Skin Care Clinic, Sylhet",
   },
+  {
+    id: "03",
+    name: "Ms. Sara Ali",
+    specialty: "Skincare Specialist",
+    avgRating: 4.8,
+    totalRating: 285,
+    photo: beauticianImg03,
+    totalClients: 1600,
+    salon: "Radiant Skin Care Clinic, Sylhet",
+  },
 ];
