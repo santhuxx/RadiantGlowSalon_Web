@@ -1,7 +1,7 @@
 {
   "name": "salon_radiant_glow",
   "version": "1.0.0",
-  "description": "",
+  
   "type": "module",
   "main": "index.js",
   "scripts": {
@@ -22,5 +22,7 @@
     "mongodb": "^6.8.0",
     "mongoose": "^8.4.4",
     "nodemon": "^3.1.4"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }
