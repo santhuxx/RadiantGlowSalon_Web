@@ -1,6 +1,13 @@
 import User from '../models/UserSchema.js';
 import Beautician from '../models/BeauticianSchema.js';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+
+const generateToken = (user) => {
+    return jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET_KEY, {
+        expiresIn: "30d",
+    });
+};
 
 export const register = async (req, res) => {
     const { email, password, name, role, photo, gender } = req.body;
@@ -44,18 +51,49 @@ export const register = async (req, res) => {
         await user.save();
 
         res.status(200).json({ success: true, message: 'User successfully created' });
-
     } catch (err) {
         console.error('Error in registration:', err);
-        res.status(500).json({ success: false, message: 'Serverr is error, try again' });
+        res.status(500).json({ success: false, message: 'Server error, try again' });
     }
 };
 
 export const login = async (req, res) => {
+    const { email, password } = req.body;
     try {
-        // Implement login functionality here
+        let user = null;
+
+        const client = await User.findOne({ email });
+        const beautician = await Beautician.findOne({ email });
+
+        if (client) {
+            user = client;
+        }
+        if (beautician) {
+            user = beautician;
+        }
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
+
+        if (!isPasswordMatch) {
+            return res.status(400).json({ status: false, message: "Invalid credentials" });
+        }
+
+        const token = generateToken(user);
+
+        const { password: userPassword, role, appointments, ...rest } = user._doc;
+
+        res.status(200).json({
+            status: true,
+            message: "Login Successfully",
+            token,
+            data: { ...rest },
+            role,
+        });
     } catch (err) {
-        console.error('Error in login:', err);
-        res.status(500).json({ success: false, message: 'Internal Server error, try again' });
+        res.status(500).json({ status: false, message: "Login failed" });
     }
 };
