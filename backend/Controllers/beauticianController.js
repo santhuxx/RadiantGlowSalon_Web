@@ -39,7 +39,7 @@ export const getSingleBeautician = async (req, res) => {
     const id = req.params.id;
 
     try {
-        const beautician = await Beautician.findById(id).select("-password");//password removed from get method
+        const beautician = await Beautician.findById(id).populate('reviews').select("-password");//password removed from get method
 
         res.status(200).json({
             success: true,

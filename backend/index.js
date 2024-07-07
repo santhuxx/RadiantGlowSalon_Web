@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import authRoute from './Routes/auth.js'
 import userRoute from './Routes/user.js'
 import beauticianRoute from './Routes/beautician.js'
+import reviewRoute from './Routes/review.js'
 
 // Load environment variables from .env file
 dotenv.config();
@@ -23,6 +24,7 @@ app.use(cookieParser());
 app.use('/api/v1/auth', authRoute)
 app.use('/api/v1/users', userRoute)
 app.use('/api/v1/beauticians', beauticianRoute)
+app.use('/api/v1/reviews', reviewRoute)
 
 // Set mongoose options
 mongoose.set('strictQuery', false);

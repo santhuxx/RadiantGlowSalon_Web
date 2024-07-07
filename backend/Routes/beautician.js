@@ -8,7 +8,11 @@ import {
 
 import  {authenticate, restrict} from '../auth/verifyToken.js';
 
+import reviewRouter from './review.js'
+
 const router = express.Router()
+
+router.use('/:beauticianId/reviews', reviewRouter)
 
 router.get('/:id', getSingleBeautician)
 router.get('/', getAllBeauticians)
