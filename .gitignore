@@ -25,3 +25,6 @@ npm-debug.log
 
 # Ignore yarn-error.log file
 yarn-error.log
+
+
+.env.local
