@@ -26,39 +26,37 @@ const reviewSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-reviewSchema.pre(/^find/, function(next){
-
+reviewSchema.pre(/^find/, function (next) {
   this.populate({
-    path: 'user',
-    select: 'name photo',
-  })
+    path: "user",
+    select: "name photo",
+  });
 
   next();
-})
+});
 
-reviewSchema.statics.calcAverageRatings = async function (beauticianId){
+reviewSchema.statics.calcAverageRatings = async function (beauticianId) {
+  const stats = await this.aggregate([
+    {
+      $match: { beautician: beauticianId },
+    },
+    {
+      $group: {
+        _id: "$beautician",
+        numOfRating: { $sum: 1 },
+        avgRating: { $avg: "$rating" },
+      },
+    },
+  ]);
 
-  const stats = await this.aggregate([{
-    $match:{beautician:beauticianId},
-  },
-{
-  $group: {
-    _id: '$beautician',
-    numOfRating: {$sum:1},
-    avgRating: {$avg: '$rating'}
-    
-  }
-}
-])
+  await Beautician.findByIdAndUpdate(beauticianId, {
+    totalRating: stats[0].numOfRating,
+    averageRating: stats[0].avgRating,
+  });
+};
 
- await Beautician.findByIdAndUpdate(beauticianId,{
-  totalRating: stats[0].numOfRating,
-  averageRating: stats[0].avgRating,
- })
-}
-
-reviewSchema.post("save", function(){
+reviewSchema.post("save", function () {
   this.constructor.calcAverageRatings(this.beautician);
-})
+});
 
 export default mongoose.model("Review", reviewSchema);

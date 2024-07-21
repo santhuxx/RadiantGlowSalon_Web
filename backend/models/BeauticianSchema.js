@@ -5,7 +5,7 @@ const BeauticianSchema = new mongoose.Schema({
   password: { type: String, required: true },
   name: { type: String, required: true },
   phone: { type: Number },
-  
+
   role: {
     type: String,
     default: "beautician", // Assuming a default role for beauticians
