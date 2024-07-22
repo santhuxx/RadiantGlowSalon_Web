@@ -2,60 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base{
-    section{
+@layer base {
+    section {
         @apply py-[75px]
     }
 }
 
-@layer components{
-    .container{
+@layer components {
+    .container {
         @apply max-w-full w-[1440px] px-5 mx-auto
     }
 
-    .btn{
+    .btn {
         @apply bg-primaryColor py-[15px] px-[35px] rounded-[50px] text-white font-[600] mt-[38px]
     }
 
-    .heading{
+    .heading {
         @apply text-[44px] leading-[54px] font-[700] text-headingColor
     }
 
-    .text_para{
+    .text_para {
         @apply text-[18px] leading-[30px] font-[400] text-textColor mt-[18px]
     }
 
-    .header{
+    .header {
         @apply bg-[url('./assets/images/mask.png')] bg-no-repeat bg-center bg-cover w-full h-[100px] leading-[100px];
     }
 
-    .hero_section{
+    .hero_section {
         @apply bg-[url('./assets/images/hero-bg.png')] bg-no-repeat bg-center bg-cover;
     }
 
-    .form_label{
+    .form_label {
         @apply text-textColor font-semibold text-[16px] leading-7 mb-2
     }
 
-    .form_input{
-        @apply w-full px-4 py-4 border border-solid border-[#0066ff61] 
-        focus:outline-none focus:border-primaryColor text-[16px] leading-7
-         text-headingColor placeholder:text-textColor cursor-pointer
+    .form_input {
+        @apply w-full px-4 py-4 border border-solid border-[#0066ff61] focus: outline-none focus:border-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer
     }
 }
 
-@media only screen and (max-width: 1024px){
-    .container{
+@media only screen and (max-width: 1024px) {
+    .container {
         @apply w-full;
     }
 
-    section{
+    section {
         @apply py-[35px]
     }
 }
 
-@media only screen and (max-width: 768px){
-    .heading{
+@media only screen and (max-width: 768px) {
+    .heading {
         @apply text-[26px] leading-[36px];
     }
 
